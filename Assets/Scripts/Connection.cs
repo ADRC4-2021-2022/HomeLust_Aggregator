@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Add all connection types here
-public enum ConnectionType { conPink = 0 , conYellow = 1}
 public class Connection
 {
     #region public fields
-    ConnectionType Type;
     public string Name;
     public List<TilePattern> ConnectingTiles;
 
@@ -17,15 +15,20 @@ public class Connection
 
     #endregion
     #region constructors
-    public Connection(ConnectionType type, string name)
+    public Connection(string name)
     {
-        Type = type;
+        Name = name;
     }
 
     #endregion
     #region public functions
+    /// <summary>
+    /// Add a pattern to the possible connecting tile list
+    /// </summary>
+    /// <param name="pattern">The pattern</param>
     public void AddTilePatternToConnection(TilePattern pattern)
     {
+        if (ConnectingTiles == null) ConnectingTiles = new List<TilePattern>();
         ConnectingTiles.Add(pattern);
     }
 
